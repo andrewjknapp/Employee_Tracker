@@ -35,6 +35,7 @@ const functions = {
                 id, 
                 name AS Departments
             FROM department
+            ORDER BY id
             `
         )
     },
@@ -47,6 +48,7 @@ const functions = {
                 title AS Titles,
                 salary AS Salary
             FROM role 
+            ORDER BY id
             `
         )
     },
@@ -115,7 +117,12 @@ const functions = {
     },
 
     createDepartment(department) {
-        console.log("Hello");
+        return this.connect.query(
+            `
+            INSERT INTO department
+            SET ?
+            `, department
+        )
     },
 
     createRole(role) {
