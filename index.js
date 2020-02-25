@@ -17,7 +17,7 @@ function init() {
 
 
 async function loadMainPrompts() {
-  console.log('hello');
+  
   const { choice } = await prompt([
     {
       type: "list",
