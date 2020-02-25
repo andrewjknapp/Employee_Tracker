@@ -126,7 +126,12 @@ const functions = {
     },
 
     createRole(role) {
-        console.log("Hello");
+        return this.connect.query(
+            `
+            INSERT INTO role
+            SET ?
+            `, role
+        )
     },
 
     updateEmployeeRole(employeeId, roleId) {
@@ -160,7 +165,13 @@ const functions = {
     },
 
     removeEmployee(employeeId) {
-        console.log("Hello");
+        return this.connect.query(
+            `
+            DELETE 
+            FROM employee
+            WHERE id = ?
+            `, employeeId
+        )
     },
 
     removeDepartment(departmentId) {

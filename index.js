@@ -185,8 +185,8 @@ async function viewEmployeesByManager() {
 async function removeEmployee() {
   const employees = await db.findAllEmployees();
 
-  const employeeChoices = employees.map(({ id, first_name, last_name }) => ({
-    name: `${first_name} ${last_name}`,
+  const employeeChoices = employees.map(({ id, First, Last }) => ({
+    name: `${First} ${Last}`,
     value: id
   }));
 
@@ -299,8 +299,8 @@ async function viewRoles() {
 async function addRole() {
   const departments = await db.findAllDepartments();
 
-  const departmentChoices = departments.map(({ id, name }) => ({
-    name: name,
+  const departmentChoices = departments.map(({ id, Departments }) => ({
+    name: Departments,
     value: id
   }));
 
