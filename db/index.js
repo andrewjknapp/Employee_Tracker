@@ -3,42 +3,66 @@ const mysql = require('mysql');
 
 function dbmake(connection) {
     let database = Object.assign({}, functions);
-    database.connection = connection;
+    database.connect = connection;
     return database;
 }
 
 const functions = {
     findAllEmployees() {
-       return this.connection.query(
+       return this.connect.query(
            `
            SELECT 
+                e.id,
                 e.first_name AS First,
                 e.last_name AS Last,
-                r.title AS Role,
-                d.name AS Department 
+                r.title AS Title,
+                d.name AS Department,
+                r.salary AS Salary,
+                CONCAT(m.first_name, " ", m.last_name) AS Manager
+
            FROM employee e
-           INNER JOIN role r ON e.role_id = r.id 
-           INNER JOIN department d ON r.department_id = d.id
+           LEFT JOIN role r ON e.role_id = r.id 
+           LEFT JOIN department d ON r.department_id = d.id
+           LEFT JOIN employee m ON e.manager_id = m.id
+           ORDER BY e.id
            `);
     },
 
     findAllDepartments() {
-        console.log("Hello");
+        return this.connect.query(
+            `
+            SELECT name AS Departments
+            FROM department
+            `
+        )
     },
 
     findAllRoles() {
-        console.log("Hello");
+        return this.connect.query(
+            `
+            SELECT 
+                title AS Titles,
+                salary AS Salary
+            FROM role 
+            `
+        )
     },
 
     findAllPossibleManagers(employeeId) {
-        console.log("Hello");
+        return this.connect.query(
+            `
+            SELECT id, first_name, last_name
+            FROM employee
+            WHERE id <> ?
+            `, employeeId
+        )
     },
 
     findAllEmployeesByDepartment (departmentId) {
         console.log("Hello");
     },
 
-    findAllEmployeesByManager() {
+    findAllEmployeesByManager(managerId) {
         console.log("Hello");
     },
 
@@ -54,12 +78,23 @@ const functions = {
         console.log("Hello");
     },
 
-    updateEmployeeRole() {
+    updateEmployeeRole(employeeId, roleId) {
         console.log("Hello");
     },
 
-    updateEmployeeManager() {
-        console.log("Hello");
+    updateEmployeeManager(employeeId, managerId) {
+        return this.connect.query(
+            `
+            UPDATE employee
+            SET ?
+            WHERE ?
+            `, [{
+                manager_id: managerId
+            },
+            {
+                id: employeeId
+            }]
+        )
     },
 
     removeEmployee(employeeId) {
@@ -69,7 +104,7 @@ const functions = {
     removeDepartment(departmentId) {
         console.log("Hello");
     },
-    
+
     removeRole(roleId) {
         console.log("Hello");
     }
