@@ -175,7 +175,25 @@ const functions = {
     },
 
     removeDepartment(departmentId) {
-        return this.connect.query(
+        this.connect.query(
+            `
+            DELETE 
+            FROM employee
+            WHERE role_id = ALL(
+                SELECT id
+                FROM role
+                WHERE department_id = ?
+            ) 
+            `, departmentId
+        )
+        this.connect.query(
+            `
+            DELETE 
+            FROM role
+            WHERE department_id = ?
+            `, departmentId
+        )
+        this.connect.query(
             `
             DELETE 
             FROM department
