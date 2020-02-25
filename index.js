@@ -129,9 +129,9 @@ async function viewEmployees() {
 
 async function viewEmployeesByDepartment() {
   const departments = await db.findAllDepartments();
-
-  const departmentChoices = departments.map(({ id, name }) => ({
-    name: name,
+  
+  const departmentChoices = departments.map(({ id, Departments }) => ({
+    name: Departments,
     value: id
   }));
 
@@ -155,8 +155,8 @@ async function viewEmployeesByDepartment() {
 async function viewEmployeesByManager() {
   const managers = await db.findAllEmployees();
 
-  const managerChoices = managers.map(({ id, first_name, last_name }) => ({
-    name: `${first_name} ${last_name}`,
+  const managerChoices = managers.map(({ id, First, Last }) => ({
+    name: `${First} ${Last}`,
     value: id
   }));
 
@@ -174,7 +174,7 @@ async function viewEmployeesByManager() {
   console.log("\n");
 
   if (employees.length === 0) {
-    console.log("The selected employee has no direct reports");
+    console.log("The selected employee has no direct reports\n\n");
   } else {
     console.table(employees);
   }
