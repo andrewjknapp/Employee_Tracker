@@ -118,7 +118,18 @@ const functions = {
     },
 
     updateEmployeeRole(employeeId, roleId) {
-        console.log("Hello");
+        return this.connect.query(
+            `
+            UPDATE employee
+            SET ?
+            WHERE ?
+            `, [{
+                role_id: roleId
+            },
+            {
+                id: employeeId
+            }]
+        )
     },
 
     updateEmployeeManager(employeeId, managerId) {

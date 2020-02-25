@@ -209,8 +209,8 @@ async function removeEmployee() {
 async function updateEmployeeRole() {
   const employees = await db.findAllEmployees();
 
-  const employeeChoices = employees.map(({ id, first_name, last_name }) => ({
-    name: `${first_name} ${last_name}`,
+  const employeeChoices = employees.map(({ id, First, Last }) => ({
+    name: `${First} ${Last}`,
     value: id
   }));
 
@@ -225,8 +225,8 @@ async function updateEmployeeRole() {
 
   const roles = await db.findAllRoles();
 
-  const roleChoices = roles.map(({ id, title }) => ({
-    name: title,
+  const roleChoices = roles.map(({ id, Titles }) => ({
+    name: Titles,
     value: id
   }));
 
