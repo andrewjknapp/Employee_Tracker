@@ -415,8 +415,8 @@ async function addEmployee() {
     }
   ]);
 
-  const roleChoices = roles.map(({ id, title }) => ({
-    name: title,
+  const roleChoices = roles.map(({ id, Titles }) => ({
+    name: Titles,
     value: id
   }));
 
@@ -429,8 +429,8 @@ async function addEmployee() {
 
   employee.role_id = roleId;
 
-  const managerChoices = employees.map(({ id, first_name, last_name }) => ({
-    name: `${first_name} ${last_name}`,
+  const managerChoices = employees.map(({ id, First, Last }) => ({
+    name: `${First} ${Last}`,
     value: id
   }));
   managerChoices.unshift({ name: "None", value: null });

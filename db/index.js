@@ -106,7 +106,12 @@ const functions = {
     },
 
     createEmployee(employee) {
-        console.log("Hello");
+        return this.connect.query(
+            `
+            INSERT INTO employee
+            SET ?
+            `, employee
+        )
     },
 
     createDepartment(department) {
