@@ -14,7 +14,10 @@ function init() {
   loadMainPrompts();
 }
 
+
+
 async function loadMainPrompts() {
+  console.log('hello');
   const { choice } = await prompt([
     {
       type: "list",
@@ -80,6 +83,7 @@ async function loadMainPrompts() {
       ]
     }
   ]);
+  
 
   // Call the appropriate function depending on what the user chose
   switch (choice) {
