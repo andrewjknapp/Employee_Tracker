@@ -175,11 +175,32 @@ const functions = {
     },
 
     removeDepartment(departmentId) {
-        console.log("Hello");
+        return this.connect.query(
+            `
+            DELETE 
+            FROM department
+            WHERE id = ?
+            `, departmentId
+        )
     },
 
     removeRole(roleId) {
-        console.log("Hello");
+        this.connect.query(
+            `
+            DELETE 
+            FROM role
+            WHERE id = ?
+            `, roleId
+        )
+        this.connect.query(
+            `
+            DELETE
+            FROM employee
+            WHERE role_id = ?
+            `,roleId
+        )
+
+
     }
 };
 

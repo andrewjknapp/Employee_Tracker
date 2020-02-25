@@ -331,8 +331,8 @@ async function addRole() {
 async function removeRole() {
   const roles = await db.findAllRoles();
 
-  const roleChoices = roles.map(({ id, title }) => ({
-    name: title,
+  const roleChoices = roles.map(({ id, Titles }) => ({
+    name: Titles,
     value: id
   }));
 
@@ -380,8 +380,8 @@ async function addDepartment() {
 async function removeDepartment() {
   const departments = await db.findAllDepartments();
 
-  const departmentChoices = departments.map(({ id, name }) => ({
-    name: name,
+  const departmentChoices = departments.map(({ id, Departments }) => ({
+    name: Departments,
     value: id
   }));
 
