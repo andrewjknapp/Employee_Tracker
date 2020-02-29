@@ -1,7 +1,5 @@
 # Employee Tracker
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/andrewjknapp/Employee Tracker)
-
 ## Description
 
 This application functions as an employee management system. This stores the emplyee's name, role, salary, manager, and department. All of these aspects of the employees can be modified and new employees can be added.
